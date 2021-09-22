@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { userServicios } from 'src/app/servicios/user.servicios';
 
 @Component({
   selector: 'app-menu-de-navegacion',
@@ -7,16 +8,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu-de-navegacion.component.scss']
 })
 export class MenuDeNavegacionComponent implements OnInit {
+  bloqueobotones: any;
+  rol: string;
 
   constructor(
-    private _router: Router
-  ) { }
+    private _router: Router,
+    public _userServicios: userServicios
+  ) { 
+    this.rol = this._userServicios.getrol()
+  }
 
   ngOnInit(): void {
+    this.bloqueoroladmin()
   }
 
   serrarsecion(){
     window.localStorage.clear()
     this._router.navigate(['/iniciar-sesion'])
+  }
+
+  bloqueoroladmin(){
+    if(this.rol != "EMPRESA"){
+      this.bloqueobotones = true
+    }else{
+      this.bloqueobotones = false
+    }
   }
 }

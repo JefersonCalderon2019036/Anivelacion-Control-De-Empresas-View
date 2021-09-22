@@ -3,10 +3,100 @@
     <div class="contenido-datos">
        <div class="tabla">
            <h1>Control Empleados</h1>
-           <button type="button" class="btn btn-success" *ngIf="bloqueobotones">Agregar Nueva Empresa</button>
+           <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAgregarUnNuvoEmpleado" class="btn btn-success" *ngIf="bloqueobotones">Agregar Nueva Empresa</button>
            <div class="overflow-auto">
-            
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Códigos de Indentificación</th>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Puestos</th>
+                    <th scope="col">Departamentos</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let datosempleados of datosempleados">
+                    <th scope="row">{{datosempleados._id}}</th>
+                    <td>{{datosempleados.name}}</td>
+                    <td>{{datosempleados.lastname}}</td>
+                    <td>{{datosempleados.puesto}}</td>
+                    <td>{{datosempleados.departamento}}</td>
+                    <th scope="col">
+                      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" (click)="removeEmpleado(datosempleados._id)" class="btn btn-danger">Eliminar</button>
+                        <button type="button" (click)="datos(datosempleados._id)" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditarUsuario">Editar</button>
+                      </div>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
            </div>
        </div> 
     </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAgregarUnNuvoEmpleado" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Agregar un nuevo empleado</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del usuario"
+        name="name" #name="ngModel" [(ngModel)]="ModelosEmpleados.name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" placeholder="Ingrese el apellido del usuario"
+        name="lastname" #lastname="ngModel" [(ngModel)]="ModelosEmpleados.lastname">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Puesto</label>
+        <input type="text" class="form-control" placeholder="Ingrese el puesto"
+        name="puesto" #puesto="ngModel" [(ngModel)]="ModelosEmpleados.puesto">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Departamento</label>
+        <input type="text" class="form-control" placeholder="Ingrese el departamento"
+        name="departamento" #departamento="ngModel" [(ngModel)]="ModelosEmpleados.departamento">
+      </div>
+      <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas" (click)="AgregarUnEmpleado()">Agregar</button>
+    </form>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditarUsuario" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Agregar un nuevo empleado</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Ingrese el nombre del usuario"
+        name="name" #name="ngModel" [(ngModel)]="ModelosEmpleados.name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" placeholder="Ingrese el apellido del usuario"
+        name="lastname" #lastname="ngModel" [(ngModel)]="ModelosEmpleados.lastname">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Puesto</label>
+        <input type="text" class="form-control" placeholder="Ingrese el puesto"
+        name="puesto" #puesto="ngModel" [(ngModel)]="ModelosEmpleados.puesto">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Departamento</label>
+        <input type="text" class="form-control" placeholder="Ingrese el departamento"
+        name="departamento" #departamento="ngModel" [(ngModel)]="ModelosEmpleados.departamento">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="Actualizar()" data-bs-dismiss="offcanvas">Actualizar</button>
+    </form>
+  </div>
 </div>

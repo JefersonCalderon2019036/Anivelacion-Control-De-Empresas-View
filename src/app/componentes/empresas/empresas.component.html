@@ -10,6 +10,7 @@
                   <tr>
                     <th scope="col">Código de Indentificacion</th>
                     <th scope="col">Nomre</th>
+                    <th scope="col">Usuario</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Dirección</th>
                     <th scope="col">Rol</th>
@@ -20,6 +21,7 @@
                   <tr *ngFor ="let datosempresas of datosempresas">
                     <th scope="row">{{datosempresas._id}}</th>
                     <td>{{datosempresas.name}}</td>
+                    <td>{{datosempresas.username}}</td>
                     <td>{{datosempresas.phone}}</td>
                     <td>{{datosempresas.address}}</td>
                     <td>{{datosempresas.role}}</td>
@@ -27,7 +29,6 @@
                       <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" (click)="datecaputre(datosempresas._id)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger">Eliminar</button>
                         <button type="button" (click)="datecaputre(datosempresas._id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditarEmpresa" class="btn btn-warning">Editar</button>
-                        <button type="button" class="btn btn-success">Ver más</button>
                       </div>
                     </td>
                   </tr>

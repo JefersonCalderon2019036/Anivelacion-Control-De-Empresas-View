@@ -27,6 +27,7 @@ export class EmpresasComponent implements OnInit {
     this._userServicios.getEmpresas().subscribe(
       res => {
         this.datosempresas = res.empresas
+        console.log(this.datosempresas)
       }, error => {
         console.log(<any>error)
         Swal.fire({

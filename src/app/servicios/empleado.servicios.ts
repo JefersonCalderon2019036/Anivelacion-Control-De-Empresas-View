@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
+import { empleado } from '../modelos/empleado.modelo';
 import { serviciosglobales } from "./rutas.servicios";
 
 @Injectable({
     providedIn: 'root'
 })
-export class userServicios{
+export class empleadoServicios{
 
     url: string;
     token: any;
@@ -18,7 +19,26 @@ export class userServicios{
         this.url = serviciosglobales.url
     }
 
-    
+    //funcion para obtener todos los empleados
+    getEmpleados():Observable<any>{
+        return this._http.get(this.url+"getEmpleados", {headers: this.encabezadocontoken})
+    }
+
+    //funcion para agregar un empleado
+    setEmpleado(datos: empleado): Observable<any>{
+        let params = JSON.stringify(datos)
+        return this._http.put(this.url+"setEmpleado", params, {headers: this.encabezadocontoken})
+    }
+
+    //funcion para eliminar un empleado
+    removeEmpleado(id: any):Observable<any>{
+        return this._http.delete(this.url+"removeEmpleado/"+id, {headers: this.encabezadocontoken})
+    }
+
+    updateEmpleado(id: any, datos: empleado):Observable<any>{
+        let params = JSON.stringify(datos)
+        return this._http.put(this.url+"updateEmpleado/"+id, params, {headers: this.encabezadocontoken})
+    }
 
     //funcion para obtener el token
     getToken(){
