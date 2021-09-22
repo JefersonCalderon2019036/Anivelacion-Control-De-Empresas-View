@@ -28,7 +28,12 @@ export class IniciarSesionComponent implements OnInit {
       res => {
         localStorage.setItem('token', res.token);
         localStorage.setItem("idmiuser", res.user._id)
-        this._router.navigate(['/empresas'])
+        localStorage.setItem("rol", res.user.role)
+        if(res.user.role == "ADMIN"){
+          this._router.navigate(['/empresas'])
+        }else{
+          this._router.navigate(['/empleados'])
+        }
         Swal.fire({
           position: 'top-end',
           icon: 'success',

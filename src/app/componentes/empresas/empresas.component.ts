@@ -87,7 +87,7 @@ export class EmpresasComponent implements OnInit {
   }
 
   updateEmpresa(){
-    console.log(this.ModeloUser._id)
+    console.log(this.ModeloUser)
     this._userServicios.updateEmpresa(this.ModeloUser._id, this.ModeloUser).subscribe(
       res => {
         Swal.fire({

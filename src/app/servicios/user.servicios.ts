@@ -57,5 +57,15 @@ export class userServicios{
           this.token = null;
         }
         return this.token;
-      }
+    }
+
+    getrol(){
+        var token2 = localStorage.getItem('rol');
+        if(token2 != 'undefined'){
+          this.token = token2;
+        }else{
+          this.token = null;
+        }
+        return this.token;
+    }
 }
