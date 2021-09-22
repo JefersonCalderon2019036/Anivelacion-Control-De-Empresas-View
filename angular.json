@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "8d442b14-405f-4420-b555-7ac11a69cd04"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -29,11 +32,17 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+              ],"styles": [
+                "src/styles.scss",
+                "node_modules/boxicons/css/boxicons.min.css",
+                "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              ],
+              "scripts": [
+                "node_modules/jquery/dist/jquery.min.js",
+                "node_modules/@popperjs/core/dist/umd/popper.min.js",
+                "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                "node_modules/boxicons/dist/boxicons.js"
+              ]
           },
           "configurations": {
             "production": {

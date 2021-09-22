@@ -1,0 +1,148 @@
+<div class="contenido">
+    <app-menu-de-navegacion class="menu"></app-menu-de-navegacion>
+    <div class="contenido-datos">
+       <div class="tabla">
+           <h1>Control Empresas</h1>
+           <button type="button" class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAgregarEmpresa">Agregar Nueva Empresa</button>
+           <div class="overflow-auto">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Código de Indentificacion</th>
+                    <th scope="col">Nomre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor ="let datosempresas of datosempresas">
+                    <th scope="row">{{datosempresas._id}}</th>
+                    <td>{{datosempresas.name}}</td>
+                    <td>{{datosempresas.phone}}</td>
+                    <td>{{datosempresas.address}}</td>
+                    <td>{{datosempresas.role}}</td>
+                    <td>
+                      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button type="button" (click)="datecaputre(datosempresas._id)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger">Eliminar</button>
+                        <button type="button" (click)="datecaputre(datosempresas._id)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditarEmpresa" class="btn btn-warning">Editar</button>
+                        <button type="button" class="btn btn-success">Ver más</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+           </div>
+       </div> 
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasAgregarEmpresa" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Agregar Empresas</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text"
+        placeholder="Ingrese el nombre de la empresa" name="name" #name="ngModel" [(ngModel)]="ModeloUser.name"
+        class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Telefono</label>
+        <input type="Number" class="form-control"
+        placeholder="Ingrese el numero de telefono" name="phone" #phone="ngModel" [(ngModel)]="ModeloUser.phone"
+        required minlength="8" maxlength="8" size="10" pattern="^[0-9]+">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control"
+        placeholder="Ingrese su dirección" name="address" #address="ngModel" [(ngModel)]="ModeloUser.address">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Nombre De Usuarios</label>
+        <input type="email" class="form-control" placeholder="Ingrese el nombre de usuario"
+        name="username" #username="ngModel" [(ngModel)]="ModeloUser.username">
+        <div class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control" placeholder="Ingrese su contraseña"
+        name="password" #password="ngModel" [(ngModel)]="ModeloUser.password">
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" (click)="saveEmpresa()">Agregar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Contraseña</label>
+          <input type="password" class="form-control" placeholder="Ingrese su contraseña"
+          name="password" #password="ngModel" [(ngModel)]="ModeloUser.password">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" (click)="removeEmpresa()" data-bs-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditarEmpresa" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Editar Empresa</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form>
+
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text"
+        placeholder="Ingrese el nombre de la empresa" name="name" #name="ngModel" [(ngModel)]="ModeloUser.name"
+        class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Telefono</label>
+        <input type="Number" class="form-control"
+        placeholder="Ingrese el numero de telefono" name="phone" #phone="ngModel" [(ngModel)]="ModeloUser.phone"
+        required minlength="8" maxlength="8" size="10" pattern="^[0-9]+">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control"
+        placeholder="Ingrese su dirección" name="address" #address="ngModel" [(ngModel)]="ModeloUser.address">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Nombre De Usuarios</label>
+        <input type="email" class="form-control" placeholder="Ingrese el nombre de usuario"
+        name="username" #username="ngModel" [(ngModel)]="ModeloUser.username">
+        <div class="form-text">Nunca compartiremos su correo electrónico con nadie más.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas" aria-label="Close" (click)="updateEmpresa()">Actualizar</button>
+    </form>
+  </div>
+</div>

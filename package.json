@@ -1,6 +1,6 @@
 {
   "name": "anivelacion-control-de-empresas-view",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,7 +18,13 @@
     "@angular/platform-browser": "~12.1.1",
     "@angular/platform-browser-dynamic": "~12.1.1",
     "@angular/router": "~12.1.1",
+    "@popperjs/core": "^2.10.1",
+    "bootstrap": "^5.1.1",
+    "bootstrap-icons": "^1.5.0",
+    "boxicons": "^2.0.9",
+    "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.1.6",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
