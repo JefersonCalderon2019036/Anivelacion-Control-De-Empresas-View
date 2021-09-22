@@ -18,10 +18,14 @@ export class EmpleadosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.bloqueoroladmin()
   }
 
-  rbloqueorol(){
-
+  bloqueoroladmin(){
+    if(this.rol != "EMPRESA"){
+      this.bloqueobotones = false
+    }else{
+      this.bloqueobotones = true
+    }
   }
 }

@@ -10,7 +10,6 @@ import { MenuDeNavegacionComponent } from './componentes/menu-de-navegacion/menu
 import { EmpleadosComponent } from './componentes/empleados/empleados.component';
 import { EmpresasComponent } from './componentes/empresas/empresas.component';
 import { ProductosComponent } from './componentes/productos/productos.component';
-import { MiPerfilComponent } from './componentes/mi-perfil/mi-perfil.component';
 
 
 @NgModule({
@@ -20,8 +19,7 @@ import { MiPerfilComponent } from './componentes/mi-perfil/mi-perfil.component';
     MenuDeNavegacionComponent,
     EmpleadosComponent,
     EmpresasComponent,
-    ProductosComponent,
-    MiPerfilComponent,
+    ProductosComponent
   ],
   imports: [
     BrowserModule,
