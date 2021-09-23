@@ -28,6 +28,7 @@ export class IniciarSesionComponent implements OnInit {
       res => {
         localStorage.setItem('token', res.token);
         localStorage.setItem("idmiuser", res.user._id)
+        localStorage.setItem("name", res.user.name)
         localStorage.setItem("rol", res.user.role)
         if(res.user.role == "ADMIN"){
           this._router.navigate(['/empresas'])

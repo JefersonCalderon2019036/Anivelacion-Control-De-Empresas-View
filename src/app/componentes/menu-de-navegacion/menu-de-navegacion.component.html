@@ -7,11 +7,11 @@
         <i class='bx bxs-buildings bx-md' ></i> Empresas
     </button>
     <button type="button" class="list-group-item list-group-item-action"
-    routerLink="/empleados" routerLinkActive="active">
+    routerLink="/empleados" routerLinkActive="active" *ngIf="bloquebotones2">
         <i class='bx bxs-user-badge bx-md'></i>Empleados
     </button>
     <button type="button" class="list-group-item list-group-item-action"
-    routerLink="/productos" routerLinkActive="active">
+    routerLink="/productos" routerLinkActive="active" *ngIf="bloquebotones2">
         <i class='bx bxl-product-hunt bx-md' ></i>Productos
     </button>
     <hr size="8px" color="black" />

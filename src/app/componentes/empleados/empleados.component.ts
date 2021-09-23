@@ -3,6 +3,8 @@ import { empleado } from 'src/app/modelos/empleado.modelo';
 import { empleadoServicios } from 'src/app/servicios/empleado.servicios';
 import { userServicios } from 'src/app/servicios/user.servicios';
 import Swal from 'sweetalert2';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable'
 
 @Component({
   selector: 'app-empleados',
@@ -15,12 +17,15 @@ export class EmpleadosComponent implements OnInit {
   bloqueobotones: any;
   datosempleados: any;
   ModelosEmpleados: empleado
+  busqueda = {search: ""}
+  namecompay: any;
 
   constructor(
     public _userServicios: userServicios,
     public _empleadoServicios: empleadoServicios
   ) { 
     this.rol = this._userServicios.getrol()
+    this.namecompay = this._userServicios.getname()
     this.ModelosEmpleados = new empleado("","","","","")
   }
 
@@ -40,6 +45,7 @@ export class EmpleadosComponent implements OnInit {
   getEmpleados(){
     this._empleadoServicios.getEmpleados().subscribe(
       res => {
+        console.log(res)
         this.datosempleados = res.empleadosFind.empleados
       }, error => {
         console.log(<any>error)
@@ -131,5 +137,31 @@ export class EmpleadosComponent implements OnInit {
         })
       }
     )
+  }
+
+  Buscar(){
+    if(this.busqueda.search == ""){
+      this.getEmpleados()
+    }else{
+      this._empleadoServicios.search(this.busqueda).subscribe(
+        res => {
+          this.datosempleados = res.resultSearch
+          console.log(res)
+        }, error => {
+          console.log(<any>error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: <any>error.error.message,
+          })
+        }
+      )
+    }
+  }
+
+  Imprimir(){
+    const doc = new jsPDF();
+    autoTable(doc, { html: '#table-empleados' })
+    doc.save("Tabla De Empleados de "+this.namecompay+".pdf")
   }
 }

@@ -68,4 +68,14 @@ export class userServicios{
         }
         return this.token;
     }
+
+    getname(){
+        var token2 = localStorage.getItem('name');
+        if(token2 != 'undefined'){
+          this.token = token2;
+        }else{
+          this.token = null;
+        }
+        return this.token;
+    }
 }

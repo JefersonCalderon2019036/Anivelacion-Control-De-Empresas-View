@@ -40,6 +40,11 @@ export class empleadoServicios{
         return this._http.put(this.url+"updateEmpleado/"+id, params, {headers: this.encabezadocontoken})
     }
 
+    search(datos: any): Observable<any>{
+        let params = JSON.stringify(datos)
+        return this._http.post(this.url+"search", params, {headers: this.encabezadocontoken})
+    }
+
     //funcion para obtener el token
     getToken(){
         var token2 = localStorage.getItem('token');

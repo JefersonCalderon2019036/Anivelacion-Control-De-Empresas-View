@@ -2,37 +2,48 @@
     <app-menu-de-navegacion class="menu"></app-menu-de-navegacion>
     <div class="contenido-datos">
        <div class="tabla">
-           <h1>Control Empleados</h1>
-           <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAgregarUnNuvoEmpleado" class="btn btn-success" *ngIf="bloqueobotones">Agregar Nueva Empresa</button>
-           <div class="overflow-auto">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Códigos de Indentificación</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Puestos</th>
-                    <th scope="col">Departamentos</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let datosempleados of datosempleados">
-                    <th scope="row">{{datosempleados._id}}</th>
-                    <td>{{datosempleados.name}}</td>
-                    <td>{{datosempleados.lastname}}</td>
-                    <td>{{datosempleados.puesto}}</td>
-                    <td>{{datosempleados.departamento}}</td>
-                    <th scope="col">
-                      <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" (click)="removeEmpleado(datosempleados._id)" class="btn btn-danger">Eliminar</button>
-                        <button type="button" (click)="datos(datosempleados._id)" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditarUsuario">Editar</button>
-                      </div>
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
+          <br>
+           <h1>Control Empleados {{namecompay}}</h1>
+           <div class="acciones">
+            <button type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAgregarUnNuvoEmpleado" class="btn btn-success" *ngIf="bloqueobotones">Agregar Nueva Empresa</button>
+            <div class="buscador">
+              <input type="text" placeholder="Buscar" class="buscadorinput"
+              name="search" #search="ngModel" [(ngModel)]="busqueda.search" (change)="Buscar()">
+              <button type="button" class="btn btn-success" (click)="Buscar()">Buscar</button>
+            </div>
+            <button type="button" class="btn btn-warning" *ngIf="bloqueobotones" (click)="Imprimir()">
+              <i class='bx bxs-file-pdf bx-sm'></i>Imprimir</button>
            </div>
+          <div class="overflow-auto">
+            <table class="table"  id="table-empleados">
+              <thead>
+                <tr>
+                  <th scope="col">Códigos de Indentificación</th>
+                  <th scope="col">Nombres</th>
+                  <th scope="col">Apellidos</th>
+                  <th scope="col">Puestos</th>
+                  <th scope="col">Departamentos</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let datosempleados of datosempleados">
+                  <th scope="row">{{datosempleados._id}}</th>
+                  <td>{{datosempleados.name}}</td>
+                  <td>{{datosempleados.lastname}}</td>
+                  <td>{{datosempleados.puesto}}</td>
+                  <td>{{datosempleados.departamento}}</td>
+                  <th scope="col">
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                      <button type="button" (click)="removeEmpleado(datosempleados._id)" class="btn btn-danger">Eliminar</button>
+                      <button type="button" (click)="datos(datosempleados._id)" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditarUsuario">Editar</button>
+                    </div>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br>
        </div> 
     </div>
 </div>

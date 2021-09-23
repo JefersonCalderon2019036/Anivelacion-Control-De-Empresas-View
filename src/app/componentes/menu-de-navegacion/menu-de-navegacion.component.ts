@@ -10,6 +10,7 @@ import { userServicios } from 'src/app/servicios/user.servicios';
 export class MenuDeNavegacionComponent implements OnInit {
   bloqueobotones: any;
   rol: string;
+  bloquebotones2: any;
 
   constructor(
     private _router: Router,
@@ -30,8 +31,10 @@ export class MenuDeNavegacionComponent implements OnInit {
   bloqueoroladmin(){
     if(this.rol != "EMPRESA"){
       this.bloqueobotones = true
+      this.bloquebotones2 = false
     }else{
       this.bloqueobotones = false
+      this.bloquebotones2 = true
     }
   }
 }

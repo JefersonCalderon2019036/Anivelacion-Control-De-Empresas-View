@@ -13,12 +13,47 @@
     height: 910px;
 }
 
+.acciones{
+    display: flex;
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+.acciones .btn{
+    width: 30%;
+    margin: 0%;
+    height: 40px;
+}
+
+.buscador{
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 30%;
+    display: flex;
+    height: 40px;
+}
+
+.buscadorinput{
+    border-radius: 10px;
+}
+
+.btn{
+    margin: 0%;
+    border-radius: 10px;
+    border-radius: black;
+}
+
+.acciones form button{
+    width: 30%
+}
+
 .contenido-datos{
     width: 80%;
 }
 
 .tabla{
-    width: 90%;
+    width: 92%;
     margin-left: 5%;
     margin-top: 5%;
     background-color: white;
@@ -45,10 +80,9 @@
 
 .overflow-auto{
     width: 90%;
-    height: 625px;
+    height: 600px;
     margin-left: 5%;
     margin-top: 5%;
-    margin-bottom: 5%;
     border-radius: 5px;
     overflow: auto;
     background-color: rgb(255, 245, 245);
