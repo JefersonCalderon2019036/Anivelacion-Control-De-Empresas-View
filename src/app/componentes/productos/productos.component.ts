@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductosComponent implements OnInit {
   datos: any;
-  orden = {orden: "", cant: ""}
+  orden = {orden: "", cant: "", tipo:"", search: "", search2: 0}
   rol: any;
   namecompay: any;
   ModeloProductos: productos;
@@ -30,6 +30,7 @@ export class ProductosComponent implements OnInit {
 
   ngOnInit(): void {
     this.orden.orden = "SotckAsc";
+    this.orden.tipo = "name";
     this.listproducto()
   }
   listproducto(){
@@ -77,8 +78,7 @@ export class ProductosComponent implements OnInit {
   }
 
   obtenerid(datos: any){
-    this.ModeloProductos._id = datos._id;
-    this.ModeloProductos.name = datos.name;
+    this.ModeloProductos = datos;
   }
 
   Vender(){
@@ -102,5 +102,36 @@ export class ProductosComponent implements OnInit {
         })
       }
     )
+  }
+
+  busqueda(){
+    if(this.orden.tipo == "number"){
+      this._productoServicios.searchP(this.orden).subscribe(
+        res => {
+          this.datos = res.resultSearch
+        }, error => {
+          console.log(<any>error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: <any>error.error.message,
+          })
+        }
+      )
+    }else{
+      this.orden.search2 = Number(this.orden.search)
+      this._productoServicios.searchP(this.orden).subscribe(
+        res => {
+          this.datos = res.resultSearch
+        }, error => {
+          console.log(<any>error)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: <any>error.error.message,
+          })
+        }
+      )
+    } 
   }
 }

@@ -31,9 +31,22 @@ export class productoServicios{
         return this._http.post(this.url+"setProducto", params, {headers: this.encabezadocontoken})
     }
 
+    //simulacion de venta
     simuVenta(datos: any, id: any):Observable<any>{
         let params = JSON.stringify(datos)
         return this._http.put(this.url+"simuVenta/"+id, params, {headers: this.encabezadocontoken})
+    }
+
+    //funcion para buscar un producto
+    searchP(datos: any):Observable<any>{
+        let params = JSON.stringify(datos)
+        return this._http.post(this.url+"searchP", params, {headers: this.encabezadocontoken})
+    }
+
+    //funcion para obtener un stock
+    searchPS(datos: any): Observable<any>{
+        let params = JSON.stringify(datos)
+        return this._http.post(this.url+"searchPS", params, {headers: this.encabezadocontoken})
     }
 
     //funcion para obtener el token
