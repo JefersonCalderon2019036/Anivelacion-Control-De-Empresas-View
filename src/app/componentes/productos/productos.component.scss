@@ -18,8 +18,8 @@
 }
 
 .tabla{
-    width: 90%;
-    margin-left: 5%;
+    width: 96%;
+    margin-left: 2%;
     margin-top: 5%;
     background-color: white;
     border-radius: 10px;
@@ -30,13 +30,6 @@
     font-family: 'Lobster', cursive;
     font-size: 60px;
     text-decoration: underline black;   
-}
-
-.btn{
-    width: 80%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: 10%;
 }
 
 .bx{
@@ -62,4 +55,22 @@
 .overflow-auto::-webkit-scrollbar-thumb{
     background: #ff9d00;
     border-radius: 5px;
+}
+
+.acciones{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 2%;
+    display: flex;
+}
+
+.acciones .btn{
+    width: 20%;
+    padding: 0%;
+    margin: 0;
+}
+
+.acciones .form-select{
+    width: 30%;
+    border-color: black;
 }

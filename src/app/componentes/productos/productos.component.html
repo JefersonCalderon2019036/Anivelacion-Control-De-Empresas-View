@@ -3,9 +3,98 @@
     <div class="contenido-datos">
        <div class="tabla">
            <h1>Control Empresas</h1>
+            <div class="acciones">
+                <button type="button" class="btn btn-success" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightAgregar">Agregar producto</button>
+                <button type="button" class="btn btn-warning" (click)="Imprimir()">Imprimir</button>
+                <select class="form-select" [(ngModel)]="orden.orden" (change)="listproducto()">
+                    <option value="SotckAsc">Existencias Ascendente</option>
+                    <option value="SotckDesc">Existencias Descendente</option>
+                    <option value="CanVenAsc">Cantidad de ventas Ascendente</option>
+                    <option value="CanVenDesc">Cantidad de ventas Descendente</option>
+                </select>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </form>
+            </div>
            <div class="overflow-auto">
-            
+            <table class="table" id="table-productos">
+                <thead>
+                  <tr>
+                    <th scope="col">Codifo de verificacion</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Proveedor</th>
+                    <th scope="col">Existencias</th>
+                    <th scope="col">Cantidad de vendidas</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let datos of datos">
+                    <th scope="row">{{datos._id}}</th>
+                    <td>{{datos.name}}</td>
+                    <td>{{datos.proveedor}}</td>
+                    <td>{{datos.stock}}</td>
+                    <td>{{datos.cantVendida}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#simulaciondeventa" (click)="obtenerid(datos)" type="submit">Vender</button>
+                        </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
            </div>
        </div> 
     </div>
 </div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightAgregar" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Agregar</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <form>
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="ModeloProductos.name" class="form-control" placeholder="Nombre del producto">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Proveedorbel</label>
+            <input type="text" name="proveedor" #proveedor="ngModel" [(ngModel)]="ModeloProductos.proveedor" class="form-control" placeholder="Nombre del proveedor">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Existencias</label>
+            <input type="text" name="stock" #stock="ngModel" [(ngModel)]="ModeloProductos.stock" class="form-control" placeholder="Agregar cantidad">
+        </div>
+      </form>
+      <button class="btn btn-success" type="submit" (click)="setProducto()" data-bs-dismiss="offcanvas">Agregar</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="simulaciondeventa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Vender</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="name" #name="ngModel" [(ngModel)]="ModeloProductos.name" class="form-control" placeholder="Agregar cantidad" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Cantidad</label>
+                <input type="text" name="cant" #cant="ngModel" [(ngModel)]="orden.cant" class="form-control" placeholder="Agregar cantidad">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="Vender()" data-bs-dismiss="modal">Realizar venta</button>
+        </div>
+      </div>
+    </div>
+  </div>
