@@ -109,7 +109,6 @@ export class ProductosComponent implements OnInit {
 
   busqueda(){
     if(this.orden.tipo == "name"){
-      console.log(this.buscar)
       this._productoServicios.searchP(this.buscar).subscribe(
         res => {
           this.datos = res.resultSearch
