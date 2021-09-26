@@ -14,8 +14,10 @@ import Swal from 'sweetalert2';
 })
 export class ProductosComponent implements OnInit {
   datos: any;
-  orden = {orden: "", cant: "", tipo:"", search: "", search2: 0}
+  orden = {orden: "", cant: "", tipo:""}
+  buscar = {search: "", search2: 0}
   rol: any;
+  id: any;
   namecompay: any;
   ModeloProductos: productos;
 
@@ -78,11 +80,12 @@ export class ProductosComponent implements OnInit {
   }
 
   obtenerid(datos: any){
-    this.ModeloProductos = datos;
+    this.id = datos._id;
+    this.ModeloProductos = datos
   }
 
   Vender(){
-    this._productoServicios.simuVenta(this.orden, this.ModeloProductos._id).subscribe(
+    this._productoServicios.simuVenta(this.orden, this.id).subscribe(
       res => {
         Swal.fire({
           position: 'top-end',
@@ -105,8 +108,8 @@ export class ProductosComponent implements OnInit {
   }
 
   busqueda(){
-    if(this.orden.tipo == "number"){
-      this._productoServicios.searchP(this.orden).subscribe(
+    if(this.orden.tipo == "name"){
+      this._productoServicios.searchP(this.buscar).subscribe(
         res => {
           this.datos = res.resultSearch
         }, error => {
@@ -119,8 +122,8 @@ export class ProductosComponent implements OnInit {
         }
       )
     }else{
-      this.orden.search2 = Number(this.orden.search)
-      this._productoServicios.searchP(this.orden).subscribe(
+      this.buscar.search2 = Number(this.buscar.search)
+      this._productoServicios.searchP(this.buscar).subscribe(
         res => {
           this.datos = res.resultSearch
         }, error => {
