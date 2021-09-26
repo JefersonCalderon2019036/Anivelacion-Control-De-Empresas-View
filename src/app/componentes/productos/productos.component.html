@@ -13,7 +13,7 @@
                     <option value="CanVenDesc">Cantidad de ventas Descendente</option>
                 </select>
                 <form class="d-flex">
-                    <input class="form-control me-2" type="search" (change)="busqueda()" placeholder="Search" aria-label="Search">
+                    <input class="form-control me-2" type="search" name="search" #search="ngModel" [(ngModel)]="buscar.search" (change)="busqueda()" placeholder="Search" aria-label="Search">
                     <select class="form-select" [(ngModel)]="orden.tipo" (change)="busqueda()">
                       <option value="number">Existentes</option>
                       <option value="name">Nombre</option>
