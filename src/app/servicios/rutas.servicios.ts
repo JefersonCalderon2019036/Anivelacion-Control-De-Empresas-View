@@ -1,3 +1,3 @@
 export var serviciosglobales = {
-    url: 'http://localhost:3000/api/'
+    url: 'https://app-controlofcompanies.herokuapp.com/api/'
   }
